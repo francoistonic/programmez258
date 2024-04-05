@@ -1,0 +1,261 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 ArialMT;\f1\froman\fcharset0 Times-Roman;\f2\fswiss\fcharset0 Arial-BoldMT;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red240\green240\blue240;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c95294\c95294\c95294;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\qj\partightenfactor0
+
+\f0\fs29\fsmilli14667 \cf2 \expnd0\expndtw0\kerning0
+\'a0\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf2 \cb3 // PYBStick ESP32 Test LED\
+int LED = 6;\
+void setup() \{\
+\'a0 pinMode(LED,OUTPUT);\
+\}\
+\'a0\
+void loop() \{\
+\'a0 digitalWrite(LED, HIGH);\
+\'a0 delay(1000);\
+\'a0 digitalWrite(LED, LOW);\
+\'a0 delay(1000);\
+\}\
+\pard\pardeftab720\qj\partightenfactor0
+
+\f0\fs29\fsmilli14667 \cf2 \cb1 \'a0\
+\'a0\
+\'a0\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf2 \cb3 neoPixel.setPixelColor(num\'e9roDeLED,Rouge,Vert,Bleu);\
+\pard\pardeftab720\qj\partightenfactor0
+
+\f0\fs29\fsmilli14667 \cf2 \cb1 \'a0\
+\'a0\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf2 \cb3 neoPixel.setBrightness(25);\
+\pard\pardeftab720\qj\partightenfactor0
+
+\f0\fs29\fsmilli14667 \cf2 \cb1 \'a0\
+\'a0\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf2 \cb3 neoPixel.show();\
+\pard\pardeftab720\qj\partightenfactor0
+
+\f0\fs29\fsmilli14667 \cf2 \cb1 \'a0\
+\'a0\
+\'a0\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf2 \cb3 delay(1000);\
+\pard\pardeftab720\qj\partightenfactor0
+
+\f0\fs29\fsmilli14667 \cf2 \cb1 \'a0\
+\'a0\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf2 \cb3 // PYBStick ESP32 Neopixel\
+\'a0\
+// Appel de la biblioth\'e8que NeoPixel\
+#include <Adafruit_NeoPixel.h>\
+// Constantes\
+const int LED_NEOPIXEL = 8;\
+const int NB_LED = 1;\
+// Cr\'e9ation de l'objet "neoPixel"\
+Adafruit_NeoPixel neoPixel(NB_LED, LED_NEOPIXEL, NEO_GRB + NEO_KHZ800);\
+\'a0\
+void setup() \{\
+\'a0 // initialisation du module de LED\
+\'a0 neoPixel.begin();\
+\'a0 //Intensit\'e9 lumineuse (de 0 \'e0 100)\
+\'a0 neoPixel.setBrightness(25);\
+\}\
+\'a0\
+void loop() \{\
+\'a0 // LED en bleu\
+\'a0 neoPixel.setPixelColor(0,0,0,255);\
+\'a0 neoPixel.show();\
+\'a0 delay(1000);\
+\'a0 // LED en blanc\
+\'a0 neoPixel.setPixelColor(0,255,255,255);\
+\'a0 neoPixel.show();\
+\'a0 delay(1000);\'a0 \
+\'a0 // LED en rouge\
+\'a0 neoPixel.setPixelColor(0,255,0,0);\
+\'a0 neoPixel.show();\
+\'a0 delay(1000);\
+\'a0 // Extinction de la LED\
+\'a0 neoPixel.clear();\
+\'a0 neoPixel.show();\
+\'a0 delay(1000);\
+\}\
+\pard\pardeftab720\qj\partightenfactor0
+
+\f0\fs29\fsmilli14667 \cf2 \cb1 \'a0\
+\pard\pardeftab720\li529\sa320\partightenfactor0
+
+\f2\b\fs37\fsmilli18667 \cf2 \'a0\
+\pard\pardeftab720\qj\partightenfactor0
+
+\f0\b0\fs29\fsmilli14667 \cf2 \'a0\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf2 \cb3 // PYBStick ESP32 Temperature LED\
+// Appel des biblioth\'e8ques\
+#include <DHT.h>\
+#include <Adafruit_NeoPixel.h>\
+// Constances et variables\
+const int CAPTEUR_TEMP = 2;\
+const int LED_NEOPIXEL = 8;\
+const int NB_LED = 1;\
+float t, h;\
+// S\'e9lectionnez votre capteur\
+//DHT dht(CAPTEUR_TEMP, DHT11);\
+DHT dht(CAPTEUR_TEMP, DHT22);\
+// Cr\'e9ation de l'objet "neoPixel"\
+Adafruit_NeoPixel neoPixel(NB_LED, LED_NEOPIXEL, NEO_GRB + NEO_KHZ800);\
+\'a0\
+void setup()\{\'a0 \
+\'a0 Serial.begin(9600);\
+\'a0 dht.begin();\
+\'a0 delay(1000);\
+\'a0 // initialisation du module de LED\
+\'a0 neoPixel.begin();\
+\'a0 neoPixel.show();\'a0\'a0 \
+\'a0 //Intensit\'e9 lumineuse (de 0 \'e0 100)\
+\'a0 neoPixel.setBrightness(25);\
+\}\
+void loop()\{\
+\'a0 t = dht.readTemperature();\
+\'a0 h = dht.readHumidity();\
+\'a0 Serial.print("Temperature: ");\
+\'a0 Serial.print(t);\
+\'a0 Serial.print("\'baC - ");\
+\'a0 Serial.print("Humidite: ");\
+\'a0 Serial.print(h);\
+\'a0 Serial.println(" %");\
+\'a0 if (t < 18)\{\
+\'a0\'a0\'a0 neoPixel.setPixelColor(0,0,0,255); // Bleu\
+\'a0 \}\
+\'a0 else if (t < 25)\{\
+\'a0\'a0\'a0 neoPixel.setPixelColor(0,0,255,0); // Vert\
+\'a0 \}\
+\'a0 else \{\
+\'a0\'a0\'a0 neoPixel.setPixelColor(0,255,0,0); // Rouge\
+\'a0 \}\
+\'a0 neoPixel.show();\'a0 \
+\'a0 delay(1000);\
+\}\
+\pard\pardeftab720\qj\partightenfactor0
+
+\f0\fs29\fsmilli14667 \cf2 \cb1 \'a0\
+\'a0\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs24 \cf2 \cb3 // PYBStick_ESP32_Temperature_WiFi\
+// Appel des biblioth\'e8ques\
+#include <WiFi.h>\
+#include <WebServer.h>\
+#include <DHT.h>\
+#include <Adafruit_NeoPixel.h>\
+// Constances et variables\
+const int CAPTEUR_TEMP = 2;\
+int t, h;\
+const int LED_NEOPIXEL = 8;\
+const int NB_LED = 1;\
+\'a0\
+// S\'e9lectionnez votre capteur\
+//DHT dht(CAPTEUR_TEMP, DHT11);\
+DHT dht(CAPTEUR_TEMP, DHT22);\
+\'a0\
+// Param\'e8tres du r\'e9seau Wifi\
+const char* NOM_DU_RESEAU = "ARDUIBLOG";\
+const char* MOT_DE_PASSE = "Azerty123";\
+\'a0\
+// Cr\'e9ation de l'objet serveur (port 80)\
+WebServer serveur(80);\
+\'a0\
+// Cr\'e9ation de l'objet "neoPixel"\
+Adafruit_NeoPixel neoPixel(NB_LED, LED_NEOPIXEL, NEO_GRB + NEO_KHZ800);\
+\'a0\
+void setup() \{\
+\'a0 Serial.begin(9600);\
+\'a0 delay(500);\
+\'a0 // Capteur temp\'e9rature DHT\
+\'a0 dht.begin();\
+\'a0 // LED Neopixel (en rouge)\
+\'a0 neoPixel.begin();\
+\'a0 neoPixel.setBrightness(25);\
+\'a0 neoPixel.setPixelColor(0,255,0,0);\
+\'a0 neoPixel.show();\
+\'a0 // WiFi\'a0 \
+\'a0 WiFi.begin(NOM_DU_RESEAU, MOT_DE_PASSE);\
+\'a0 Serial.print("Connexion en cours");\
+\'a0 while (WiFi.status() != WL_CONNECTED)\{\
+\'a0\'a0\'a0 Serial.print(".");\
+\'a0\'a0\'a0 delay(250);\
+\'a0 \}\
+\'a0 Serial.println("\\n");\
+\'a0 // Connexion \'e9tablie\
+\'a0 for (int i=0; i<= 3; i++)\{\
+\'a0\'a0\'a0 // Extinction de la LED\
+\'a0\'a0\'a0 neoPixel.clear();\
+\'a0\'a0\'a0 neoPixel.show();\
+\'a0\'a0\'a0 delay(1000);\
+\'a0\'a0\'a0 // LED en vert\
+\'a0\'a0\'a0 neoPixel.setPixelColor(0,0,255,0);\
+\'a0\'a0\'a0 neoPixel.show();\
+\'a0\'a0\'a0 delay(1000);\
+\'a0\'a0\'a0 Serial.print("Adresse IP : ");\
+\'a0\'a0\'a0 Serial.println(WiFi.localIP());\'a0\'a0\'a0 \
+\'a0 \}\
+\'a0 serveur.on("/", pageAccueil);\
+\'a0 serveur.onNotFound(pageIntrouvable);\
+\'a0 serveur.begin();\
+\}\
+\'a0\
+void loop()\{\
+\'a0 serveur.handleClient();\
+\'a0 if (WiFi.status() != WL_CONNECTED)\{\
+\'a0\'a0\'a0 // LED en rouge\
+\'a0\'a0\'a0 neoPixel.setPixelColor(0,255,0,0);\
+\'a0\'a0\'a0 neoPixel.show();\
+\'a0\'a0\'a0 // Red\'e9marrage dans 30 secondes\
+\'a0\'a0\'a0 delay(30000);\
+\'a0\'a0\'a0 ESP.restart();\
+\'a0 \}\'a0 \
+\'a0 delay(10);\
+\}\
+\'a0\
+void pageAccueil()\{\
+\'a0 t = round(dht.readTemperature());\
+\'a0 h = round(dht.readHumidity());\'a0 \
+\'a0 String codeHTML = "<!DOCTYPE html>";\
+\'a0 codeHTML += "<head>";\
+\'a0 codeHTML += "<meta http-equiv='refresh' content='30'>";\
+\'a0 codeHTML += "<title>PYBStick ESP32</title>";\
+\'a0 codeHTML += "</head>";\
+\'a0 codeHTML += "<body style='background-color: rgb(255, 255, 204);'>";\
+\'a0 codeHTML += "<div style='text-align: center;'>";\
+\'a0 codeHTML += "<h1 style='font-style: italic; text-decoration: underline;'>";\
+\'a0 codeHTML += "Serveur PYBStick ESP32</h1><font size='+3'>";\
+\'a0 codeHTML += "Temp&eacute;rature : ";\
+\'a0 codeHTML += t;\
+\'a0 codeHTML += "&deg;<br>Humidit&eacute; : ";\
+\'a0 codeHTML += h;\
+\'a0 codeHTML += " %</span></font></div></body></html>";\
+\'a0 serveur.send(200, "text/html", codeHTML);\
+\}\
+void pageIntrouvable()\{\
+\'a0 serveur.send(404, "text/plain","404: Not found");\
+\}\
+\pard\pardeftab720\qj\partightenfactor0
+
+\f0\fs29\fsmilli14667 \cf2 \cb1 \'a0\
+\'a0\
+}
